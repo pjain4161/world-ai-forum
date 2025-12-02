@@ -1,843 +1,394 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2575.7">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WorldAIForum | The Future of Intelligence</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Sora', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#020617', // Deep Navy
+                            cyan: '#06b6d4', // Innovation
+                            purple: '#a855f7', // Magic
+                            green: '#39ff14', // Neon/Hacker
+                            glass: 'rgba(255, 255, 255, 0.05)',
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'shimmer': 'shimmer 2s linear infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        shimmer: {
+                            '0%': { backgroundPosition: '-1000px 0' },
+                            '100%': { backgroundPosition: '1000px 0' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #020617;
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #06b6d4;
+            border-radius: 4px;
+        }
+
+        /* Glassmorphism Utilities */
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.07);
+            border-color: #06b6d4;
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(6, 182, 212, 0.2);
+        }
+
+        /* Animated Background Mesh */
+        .bg-mesh {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            overflow: hidden;
+        }
+        .blob {
+            position: absolute;
+            filter: blur(80px);
+            opacity: 0.4;
+            animation: float 10s infinite alternate;
+        }
+        .blob-1 { top: -10%; left: -10%; width: 50vw; height: 50vw; background: #06b6d4; }
+        .blob-2 { bottom: -10%; right: -10%; width: 50vw; height: 50vw; background: #a855f7; animation-delay: -2s; }
+        .blob-3 { top: 40%; left: 40%; width: 30vw; height: 30vw; background: #020617; }
+
+        /* Neon Text */
+        .text-neon {
+            text-shadow: 0 0 10px rgba(57, 255, 20, 0.5);
+        }
+        
+        /* Loader/Success Checkmark */
+        .checkmark__circle { stroke-dasharray: 166; stroke-dashoffset: 166; stroke-width: 2; stroke-miterlimit: 10; stroke: #39ff14; fill: none; animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards; }
+        .checkmark { width: 56px; height: 56px; border-radius: 50%; display: block; stroke-width: 2; stroke: #fff; stroke-miterlimit: 10; margin: 10% auto; box-shadow: inset 0px 0px 0px #39ff14; animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both; }
+        .checkmark__check { transform-origin: 50% 50%; stroke-dasharray: 48; stroke-dashoffset: 48; animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards; }
+        @keyframes stroke { 100% { stroke-dashoffset: 0; } }
+        @keyframes scale { 0%, 100% { transform: none; } 50% { transform: scale3d(1.1, 1.1, 1); } }
+        @keyframes fill { 100% { box-shadow: inset 0px 0px 0px 30px #39ff14; } }
+
+    </style>
 </head>
-<body>
-<p class="p1">&lt;!DOCTYPE html&gt;</p>
-<p class="p1">&lt;html lang="en" class="scroll-smooth"&gt;</p>
-<p class="p1">&lt;head&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;WorldAIForum | The Future of Intelligence&lt;/title&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&amp;display=swap" rel="stylesheet"&gt;</p>
-<p class="p2"><span class="Apple-converted-space">    </span></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>tailwind.config = {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>darkMode: 'class',</p>
-<p class="p1"><span class="Apple-converted-space">            </span>theme: {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>extend: {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>fontFamily: {</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>sans: ['Sora', 'sans-serif'],</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>},</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>colors: {</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>brand: {</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>dark: '#020617', // Deep Navy</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>cyan: '#06b6d4', // Innovation</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>purple: '#a855f7', // Magic</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>green: '#39ff14', // Neon/Hacker</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>glass: 'rgba(255, 255, 255, 0.05)',</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>},</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>animation: {</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>'float': 'float 6s ease-in-out infinite',</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>'shimmer': 'shimmer 2s linear infinite',</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>},</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>keyframes: {</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>float: {</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>'0%, 100%': { transform: 'translateY(0)' },</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>'50%': { transform: 'translateY(-20px)' },</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>},</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>shimmer: {</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>'0%': { backgroundPosition: '-1000px 0' },</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>'100%': { backgroundPosition: '1000px 0' },</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">                </span>}</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>body {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background-color: #020617;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #f8fafc;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>overflow-x: hidden;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>/* Custom Scrollbar */</p>
-<p class="p1"><span class="Apple-converted-space">        </span>::-webkit-scrollbar {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>width: 8px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>::-webkit-scrollbar-track {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: #0f172a;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>::-webkit-scrollbar-thumb {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: #06b6d4;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 4px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>/* Glassmorphism Utilities */</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.glass-panel {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: rgba(15, 23, 42, 0.6);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>backdrop-filter: blur(12px);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>-webkit-backdrop-filter: blur(12px);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border: 1px solid rgba(255, 255, 255, 0.1);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.glass-card {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: rgba(255, 255, 255, 0.03);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>backdrop-filter: blur(10px);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border: 1px solid rgba(255, 255, 255, 0.05);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>transition: all 0.3s ease;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.glass-card:hover {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: rgba(255, 255, 255, 0.07);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-color: #06b6d4;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>transform: translateY(-5px);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 0 20px rgba(6, 182, 212, 0.2);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>/* Animated Background Mesh */</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.bg-mesh {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>position: fixed;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>top: 0;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>left: 0;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>width: 100vw;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>height: 100vh;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>z-index: -1;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>overflow: hidden;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.blob {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>position: absolute;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>filter: blur(80px);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>opacity: 0.4;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>animation: float 10s infinite alternate;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.blob-1 { top: -10%; left: -10%; width: 50vw; height: 50vw; background: #06b6d4; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.blob-2 { bottom: -10%; right: -10%; width: 50vw; height: 50vw; background: #a855f7; animation-delay: -2s; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.blob-3 { top: 40%; left: 40%; width: 30vw; height: 30vw; background: #020617; }</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>/* Neon Text */</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.text-neon {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>text-shadow: 0 0 10px rgba(57, 255, 20, 0.5);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>/* Loader/Success Checkmark */</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.checkmark__circle { stroke-dasharray: 166; stroke-dashoffset: 166; stroke-width: 2; stroke-miterlimit: 10; stroke: #39ff14; fill: none; animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.checkmark { width: 56px; height: 56px; border-radius: 50%; display: block; stroke-width: 2; stroke: #fff; stroke-miterlimit: 10; margin: 10% auto; box-shadow: inset 0px 0px 0px #39ff14; animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.checkmark__check { transform-origin: 50% 50%; stroke-dasharray: 48; stroke-dashoffset: 48; animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>@keyframes stroke { 100% { stroke-dashoffset: 0; } }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>@keyframes scale { 0%, 100% { transform: none; } 50% { transform: scale3d(1.1, 1.1, 1); } }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>@keyframes fill { 100% { box-shadow: inset 0px 0px 0px 30px #39ff14; } }</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
-<p class="p1">&lt;/head&gt;</p>
-<p class="p1">&lt;body class="antialiased selection:bg-brand-cyan selection:text-brand-dark"&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Background Animation --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="bg-mesh"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="blob blob-1"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="blob blob-2"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="blob blob-3"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Navigation --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;nav class="fixed w-full z-50 glass-panel border-b-0 border-white/5 transition-all duration-300" id="navbar"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="flex items-center justify-between h-20"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="flex-shrink-0 flex items-center gap-2 cursor-pointer" onclick="window.scrollTo(0,0)"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;i class="fa-solid fa-globe text-3xl text-brand-cyan animate-pulse-slow"&gt;&lt;/i&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span class="font-bold text-2xl tracking-tighter text-white"&gt;World&lt;span class="text-brand-cyan"&gt;AI&lt;/span&gt;Forum&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p2"><span class="Apple-converted-space">                </span></p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;!-- Desktop Menu --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="hidden md:block"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="ml-10 flex items-baseline space-x-8"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;a href="#about" class="hover:text-brand-cyan transition-colors px-3 py-2 rounded-md text-sm font-medium"&gt;About&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;a href="#videos" class="hover:text-brand-cyan transition-colors px-3 py-2 rounded-md text-sm font-medium"&gt;Videos&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;a href="#speakers" class="hover:text-brand-cyan transition-colors px-3 py-2 rounded-md text-sm font-medium"&gt;Speakers&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;a href="#gallery" class="hover:text-brand-cyan transition-colors px-3 py-2 rounded-md text-sm font-medium"&gt;Gallery&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;a href="#news" class="hover:text-brand-cyan transition-colors px-3 py-2 rounded-md text-sm font-medium"&gt;News&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;a href="#conference" class="bg-brand-cyan/20 text-brand-cyan hover:bg-brand-cyan hover:text-black border border-brand-cyan/50 px-4 py-2 rounded-full transition-all duration-300 text-sm font-bold shadow-[0_0_15px_rgba(6,182,212,0.3)]"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>Join Conference</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;!-- Mobile Menu Button --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="md:hidden"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;button onclick="toggleMobileMenu()" class="text-gray-300 hover:text-white p-2"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;i class="fa-solid fa-bars text-2xl"&gt;&lt;/i&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;!-- Mobile Menu --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div id="mobile-menu" class="hidden md:hidden glass-panel border-t border-white/10"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="px-2 pt-2 pb-3 space-y-1 sm:px-3"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;a href="#about" class="text-gray-300 hover:text-brand-cyan block px-3 py-2 rounded-md text-base font-medium"&gt;About&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;a href="#videos" class="text-gray-300 hover:text-brand-cyan block px-3 py-2 rounded-md text-base font-medium"&gt;Videos&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;a href="#speakers" class="text-gray-300 hover:text-brand-cyan block px-3 py-2 rounded-md text-base font-medium"&gt;Speakers&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;a href="#conference" class="text-brand-green font-bold block px-3 py-2 rounded-md text-base"&gt;Register Now&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/nav&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Hero Section --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center"&gt;</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="inline-block mb-6 px-4 py-1 rounded-full border border-brand-green/30 bg-brand-green/10 backdrop-blur-md"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;span class="text-brand-green text-sm font-mono uppercase tracking-widest"&gt;&lt;span class="animate-pulse"&gt;●&lt;/span&gt; Live: Global AI Summit 2025&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;h1 class="text-5xl md:text-8xl font-black tracking-tight mb-6 leading-tight"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>Shaping the &lt;br&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-cyan via-white to-brand-purple animate-shimmer bg-[length:200%_auto]"&gt;Intelligence&lt;/span&gt; Era</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/h1&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;p class="mt-4 max-w-2xl mx-auto text-xl text-gray-400 font-light"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>Join the world's most elite gathering of innovators, ethical hackers, and visionaries. Exploring the boundaries of Generative AI, Robotics, and Ethics.</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/p&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="mt-10 flex flex-col items-center gap-4"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="flex flex-col sm:flex-row justify-center gap-4"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;button onclick="document.getElementById('conference').scrollIntoView()" class="px-8 py-4 bg-brand-cyan hover:bg-brand-cyan/80 text-black font-bold rounded-full transition-all transform hover:scale-105 shadow-[0_0_30px_rgba(6,182,212,0.4)]"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>Secure Your Spot</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;button onclick="document.getElementById('videos').scrollIntoView()" class="px-8 py-4 bg-white/5 hover:bg-white/10 text-white border border-white/20 font-bold rounded-full transition-all backdrop-blur-md flex items-center justify-center gap-2"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;i class="fa-solid fa-play"&gt;&lt;/i&gt; Watch Keynotes</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;button onclick="document.getElementById('about').scrollIntoView()" class="px-8 py-3 bg-brand-purple/20 hover:bg-brand-purple hover:text-white text-brand-purple border border-brand-purple/50 font-bold rounded-full transition-all backdrop-blur-md flex items-center justify-center gap-2 shadow-[0_0_15px_rgba(168,85,247,0.2)]"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;i class="fa-solid fa-users"&gt;&lt;/i&gt; Join Community</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;!-- Floating Stats --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-white/10 pt-10"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="text-center"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="text-4xl font-bold text-white counter" data-target="125"&gt;0&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="text-sm text-gray-400 uppercase tracking-wider"&gt;Countries&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="text-center"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="text-4xl font-bold text-white counter" data-target="500"&gt;0&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="text-sm text-gray-400 uppercase tracking-wider"&gt;Speakers&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="text-center"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="text-4xl font-bold text-white counter" data-target="50"&gt;0&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="text-sm text-gray-400 uppercase tracking-wider"&gt;Startups&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="text-center"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="text-4xl font-bold text-white counter" data-target="15"&gt;0&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="text-sm text-gray-400 uppercase tracking-wider"&gt;Workshops&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;!-- Decorative Floating Elements --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="absolute top-1/4 left-10 w-20 h-20 glass-card rounded-2xl animate-float flex items-center justify-center opacity-50 md:opacity-100"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;i class="fa-solid fa-microchip text-4xl text-brand-purple"&gt;&lt;/i&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="absolute bottom-1/4 right-10 w-24 h-24 glass-card rounded-full animate-float flex items-center justify-center opacity-50 md:opacity-100" style="animation-delay: 2s;"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;i class="fa-solid fa-globe text-4xl text-brand-cyan"&gt;&lt;/i&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- YouTube &amp; Video Section --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;section id="videos" class="py-20 relative"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="flex justify-between items-end mb-12"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h2 class="text-3xl md:text-4xl font-bold mb-2"&gt;From the &lt;span class="text-red-500"&gt;Channel&lt;/span&gt;&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-gray-400"&gt;Deep dives, tutorials, and conference replays.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="hidden md:flex gap-6 items-center glass-panel px-6 py-3 rounded-full"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="text-center"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="block font-bold text-white"&gt;125K&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="text-xs text-gray-400"&gt;Subscribers&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="w-px h-8 bg-white/20"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="text-center"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="block font-bold text-white"&gt;2.5M&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="text-xs text-gray-400"&gt;Views&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;button class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded text-sm font-bold transition-colors"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>SUBSCRIBE</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;!-- Video Card 1 --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="glass-card rounded-xl overflow-hidden group cursor-pointer"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="relative h-48 bg-gray-800"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=800&amp;q=80" class="w-full h-full object-cover transition transform group-hover:scale-110" alt="AI Video"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;i class="fa-solid fa-play-circle text-6xl text-brand-cyan drop-shadow-lg"&gt;&lt;/i&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="absolute bottom-2 right-2 bg-black/80 text-xs px-2 py-1 rounded"&gt;12:45&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="p-5"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h3 class="text-lg font-bold mb-2 group-hover:text-brand-cyan transition-colors"&gt;The Ethics of AGI: A Debate&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="flex justify-between text-sm text-gray-400"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;span&gt;&lt;i class="fa-regular fa-eye mr-1"&gt;&lt;/i&gt; 45K Views&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;span&gt;2 days ago&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                 </span>&lt;!-- Video Card 2 --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>&lt;div class="glass-card rounded-xl overflow-hidden group cursor-pointer"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="relative h-48 bg-gray-800"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;img src="https://images.unsplash.com/photo-1555255707-c07966088b7b?w=800&amp;q=80" class="w-full h-full object-cover transition transform group-hover:scale-110" alt="Coding Video"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;i class="fa-solid fa-play-circle text-6xl text-brand-cyan drop-shadow-lg"&gt;&lt;/i&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="absolute bottom-2 right-2 bg-black/80 text-xs px-2 py-1 rounded"&gt;28:10&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="p-5"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h3 class="text-lg font-bold mb-2 group-hover:text-brand-cyan transition-colors"&gt;Building Neural Networks from Scratch&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="flex justify-between text-sm text-gray-400"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;span&gt;&lt;i class="fa-regular fa-eye mr-1"&gt;&lt;/i&gt; 112K Views&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;span&gt;1 week ago&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                 </span>&lt;!-- Video Card 3 --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>&lt;div class="glass-card rounded-xl overflow-hidden group cursor-pointer"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="relative h-48 bg-gray-800"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&amp;q=80" class="w-full h-full object-cover transition transform group-hover:scale-110" alt="Robot"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;i class="fa-solid fa-play-circle text-6xl text-brand-cyan drop-shadow-lg"&gt;&lt;/i&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="absolute bottom-2 right-2 bg-black/80 text-xs px-2 py-1 rounded"&gt;08:30&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="p-5"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h3 class="text-lg font-bold mb-2 group-hover:text-brand-cyan transition-colors"&gt;Robotics in 2025: What to Expect&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="flex justify-between text-sm text-gray-400"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;span&gt;&lt;i class="fa-regular fa-eye mr-1"&gt;&lt;/i&gt; 89K Views&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;span&gt;2 weeks ago&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Conference Sign-Up Section --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;section id="conference" class="py-20 bg-black/30 relative"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="max-w-4xl mx-auto px-4"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="text-center mb-12"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;span class="text-brand-green font-mono tracking-widest text-sm uppercase"&gt;Next Event&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;h2 class="text-4xl font-bold mt-2 mb-4"&gt;Silicon Valley AI Summit&lt;/h2&gt;</p>
-<p class="p2"><span class="Apple-converted-space">                </span></p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;!-- Countdown --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="flex justify-center gap-4 text-center my-8"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="glass-panel p-4 rounded-lg w-24"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="block text-3xl font-bold text-brand-cyan" id="days"&gt;00&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="text-xs uppercase text-gray-400"&gt;Days&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="glass-panel p-4 rounded-lg w-24"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="block text-3xl font-bold text-brand-cyan" id="hours"&gt;00&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="text-xs uppercase text-gray-400"&gt;Hours&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="glass-panel p-4 rounded-lg w-24"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="block text-3xl font-bold text-brand-cyan" id="minutes"&gt;00&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="text-xs uppercase text-gray-400"&gt;Mins&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p2"><span class="Apple-converted-space">                </span></p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;!-- Availability Bar --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="max-w-md mx-auto mb-8"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="flex justify-between text-xs mb-1 text-gray-400"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span&gt;Availability&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="text-red-400"&gt;Only 14 spots left&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="w-full bg-gray-800 rounded-full h-2"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="bg-gradient-to-r from-brand-cyan to-brand-green h-2 rounded-full" style="width: 88%"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;!-- The Registration Application --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="glass-panel rounded-2xl p-1 border border-brand-cyan/20 shadow-2xl overflow-hidden relative" id="reg-app"&gt;</p>
-<p class="p2"><span class="Apple-converted-space">                </span></p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;!-- Progress Bar --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="h-1 w-full bg-gray-800 absolute top-0 left-0 z-20"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div id="progress-bar" class="h-full bg-brand-cyan transition-all duration-500" style="width: 33%"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="p-8"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;!-- Step 1: Info --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div id="step-1" class="step-content"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h3 class="text-2xl font-bold mb-6 flex items-center gap-2"&gt;&lt;span class="bg-brand-cyan text-black w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold"&gt;1&lt;/span&gt; Your Details&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="grid grid-cols-1 md:grid-cols-2 gap-4"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;input type="text" placeholder="Full Name" class="w-full bg-white/5 border border-white/10 rounded-lg p-3 text-white focus:border-brand-cyan focus:outline-none focus:ring-1 focus:ring-brand-cyan transition-colors"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;input type="email" placeholder="Email Address" class="w-full bg-white/5 border border-white/10 rounded-lg p-3 text-white focus:border-brand-cyan focus:outline-none transition-colors"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;input type="tel" placeholder="Phone Number" class="w-full bg-white/5 border border-white/10 rounded-lg p-3 text-white focus:border-brand-cyan focus:outline-none transition-colors"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;input type="text" placeholder="Company / Organization" class="w-full bg-white/5 border border-white/10 rounded-lg p-3 text-white focus:border-brand-cyan focus:outline-none transition-colors"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="mt-8 text-right"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;button onclick="nextStep(2)" class="bg-white text-black font-bold py-3 px-8 rounded-lg hover:bg-gray-200 transition-colors"&gt;Next: Select Ticket &lt;i class="fa-solid fa-arrow-right ml-2"&gt;&lt;/i&gt;&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;!-- Step 2: Ticket --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div id="step-2" class="step-content hidden"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h3 class="text-2xl font-bold mb-6 flex items-center gap-2"&gt;&lt;span class="bg-brand-cyan text-black w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold"&gt;2&lt;/span&gt; Choose Access&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="grid grid-cols-1 md:grid-cols-3 gap-4"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;!-- Standard --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;label class="cursor-pointer"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;input type="radio" name="ticket" class="peer sr-only"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div class="p-4 rounded-xl border border-white/10 bg-white/5 peer-checked:border-brand-cyan peer-checked:bg-brand-cyan/10 transition-all hover:bg-white/10 h-full"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;h4 class="font-bold text-lg"&gt;Virtual&lt;/h4&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;p class="text-3xl font-bold my-2 text-white"&gt;$49&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;ul class="text-sm text-gray-400 space-y-2"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;li&gt;&lt;i class="fa-solid fa-check text-brand-cyan"&gt;&lt;/i&gt; Live Stream&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;li&gt;&lt;i class="fa-solid fa-check text-brand-cyan"&gt;&lt;/i&gt; Discord Access&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;!-- Pro --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;label class="cursor-pointer"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;input type="radio" name="ticket" class="peer sr-only" checked&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div class="p-4 rounded-xl border border-brand-cyan bg-brand-cyan/10 relative h-full"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-brand-cyan text-black text-xs font-bold px-2 py-1 rounded"&gt;POPULAR&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;h4 class="font-bold text-lg text-brand-cyan"&gt;Attendee&lt;/h4&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;p class="text-3xl font-bold my-2 text-white"&gt;$299&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;ul class="text-sm text-gray-300 space-y-2"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;li&gt;&lt;i class="fa-solid fa-check text-brand-cyan"&gt;&lt;/i&gt; In-Person Access&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;li&gt;&lt;i class="fa-solid fa-check text-brand-cyan"&gt;&lt;/i&gt; Workshop Entry&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;li&gt;&lt;i class="fa-solid fa-check text-brand-cyan"&gt;&lt;/i&gt; Networking Dinner&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;!-- VIP --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;label class="cursor-pointer"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;input type="radio" name="ticket" class="peer sr-only"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div class="p-4 rounded-xl border border-brand-purple/50 bg-brand-purple/5 peer-checked:border-brand-purple peer-checked:bg-brand-purple/20 transition-all hover:bg-white/10 h-full"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;h4 class="font-bold text-lg text-brand-purple"&gt;VIP&lt;/h4&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;p class="text-3xl font-bold my-2 text-white"&gt;$999&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;ul class="text-sm text-gray-400 space-y-2"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;li&gt;&lt;i class="fa-solid fa-check text-brand-purple"&gt;&lt;/i&gt; Backstage Pass&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;li&gt;&lt;i class="fa-solid fa-check text-brand-purple"&gt;&lt;/i&gt; Speaker Dinner&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;li&gt;&lt;i class="fa-solid fa-check text-brand-purple"&gt;&lt;/i&gt; Lifetime Recordings&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="mt-8 flex justify-between items-center"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;button onclick="nextStep(1)" class="text-gray-400 hover:text-white"&gt;Back&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;button onclick="nextStep(3)" class="bg-brand-cyan text-black font-bold py-3 px-8 rounded-lg hover:bg-brand-cyan/80 transition-colors"&gt;Next: Payment &lt;i class="fa-solid fa-arrow-right ml-2"&gt;&lt;/i&gt;&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;!-- Step 3: Payment --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div id="step-3" class="step-content hidden"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h3 class="text-2xl font-bold mb-6 flex items-center gap-2"&gt;&lt;span class="bg-brand-cyan text-black w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold"&gt;3&lt;/span&gt; Payment&lt;/h3&gt;</p>
-<p class="p2"><span class="Apple-converted-space">                        </span></p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="space-y-4 mb-6"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div class="p-4 border border-white/10 rounded-lg flex items-center justify-between cursor-pointer hover:bg-white/5 transition"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div class="flex items-center gap-3"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;i class="fa-regular fa-credit-card text-2xl text-gray-300"&gt;&lt;/i&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;span&gt;Credit / Debit Card&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;input type="radio" name="payment" checked class="accent-brand-cyan"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div class="p-4 border border-white/10 rounded-lg flex items-center justify-between cursor-pointer hover:bg-white/5 transition"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div class="flex items-center gap-3"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;i class="fa-brands fa-paypal text-2xl text-blue-500"&gt;&lt;/i&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;span&gt;PayPal&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;input type="radio" name="payment" class="accent-brand-cyan"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div class="p-4 border border-white/10 rounded-lg flex items-center justify-between cursor-pointer hover:bg-white/5 transition"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div class="flex items-center gap-3"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;i class="fa-brands fa-bitcoin text-2xl text-orange-500"&gt;&lt;/i&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;span&gt;Crypto (ETH/BTC)&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;input type="radio" name="payment" class="accent-brand-cyan"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="mt-8 flex justify-between items-center"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;button onclick="nextStep(2)" class="text-gray-400 hover:text-white"&gt;Back&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;button onclick="finishRegistration()" class="bg-brand-green text-black font-bold py-3 px-8 rounded-lg hover:bg-green-400 transition-colors shadow-[0_0_20px_rgba(57,255,20,0.3)]"&gt;COMPLETE ORDER&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;!-- Success State --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div id="step-success" class="step-content hidden text-center py-10"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="checkmark-wrapper"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                             </span>&lt;svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/svg&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h3 class="text-3xl font-bold mt-4 text-white"&gt;You're In!&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="text-gray-400 mt-2"&gt;Ticket details sent to your email.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="mt-8"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;a href="#" class="text-brand-cyan underline"&gt;Add to Calendar&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Speakers &amp; Founders --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;section id="speakers" class="py-20"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;h2 class="text-4xl font-bold mb-12 text-center"&gt;Visionaries &amp; &lt;span class="text-brand-purple"&gt;Founders&lt;/span&gt;&lt;/h2&gt;</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;!-- Founders Spotlight --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;!-- Founder 1 --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="glass-card p-8 rounded-2xl flex flex-col md:flex-row items-center gap-6 border-l-4 border-brand-cyan"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&amp;q=80" class="w-32 h-32 rounded-full object-cover border-2 border-brand-cyan shadow-[0_0_15px_rgba(6,182,212,0.5)]" alt="Founder"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="text-brand-cyan text-sm font-bold uppercase tracking-wider"&gt;Co-Founder&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h3 class="text-2xl font-bold"&gt;Dr. Alex Chen&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="text-gray-400 text-sm mt-2"&gt;Former Lead at DeepMind. Pioneer in Reinforcement Learning.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="flex gap-4 mt-4"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;a href="#" class="text-gray-400 hover:text-white"&gt;&lt;i class="fa-brands fa-linkedin text-xl"&gt;&lt;/i&gt;&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;a href="#" class="text-gray-400 hover:text-white"&gt;&lt;i class="fa-brands fa-twitter text-xl"&gt;&lt;/i&gt;&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>&lt;!-- Founder 2 --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>&lt;div class="glass-card p-8 rounded-2xl flex flex-col md:flex-row items-center gap-6 border-l-4 border-brand-purple"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&amp;q=80" class="w-32 h-32 rounded-full object-cover border-2 border-brand-purple shadow-[0_0_15px_rgba(168,85,247,0.5)]" alt="Founder"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="text-brand-purple text-sm font-bold uppercase tracking-wider"&gt;Co-Founder&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h3 class="text-2xl font-bold"&gt;Sarah Vance&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="text-gray-400 text-sm mt-2"&gt;Author of "The Ethical Code". AI Policy Advisor.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="flex gap-4 mt-4"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;a href="#" class="text-gray-400 hover:text-white"&gt;&lt;i class="fa-brands fa-linkedin text-xl"&gt;&lt;/i&gt;&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;a href="#" class="text-gray-400 hover:text-white"&gt;&lt;i class="fa-brands fa-twitter text-xl"&gt;&lt;/i&gt;&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;!-- Speaker Grid --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;!-- Generate 6 Speaker Avatars --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;!-- Speaker 1 --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="group relative cursor-pointer" onclick="openSpeakerModal('Elena Ross', 'Chief Data Scientist', 'AI Award Winner 2024')"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&amp;q=80" class="w-full h-64 object-cover rounded-xl filter grayscale group-hover:grayscale-0 transition-all duration-500" alt="Speaker"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90 rounded-xl flex flex-col justify-end p-4"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h4 class="font-bold text-white text-sm"&gt;Elena Ross&lt;/h4&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="text-xs text-brand-cyan"&gt;Neural Networks&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;!-- Speaker 2 --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="group relative cursor-pointer" onclick="openSpeakerModal('Marcus Thorne', 'Robotics Engineer', 'Built the Atlas Prototype')"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&amp;q=80" class="w-full h-64 object-cover rounded-xl filter grayscale group-hover:grayscale-0 transition-all duration-500" alt="Speaker"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90 rounded-xl flex flex-col justify-end p-4"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h4 class="font-bold text-white text-sm"&gt;Marcus Thorne&lt;/h4&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="text-xs text-brand-cyan"&gt;Robotics&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;!-- Speaker 3 --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="group relative cursor-pointer" onclick="openSpeakerModal('Dr. Arinze Okafor', 'Ethicist', 'Cambridge University')"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;img src="https://images.unsplash.com/photo-1531384441138-2736e62e0919?w=400&amp;q=80" class="w-full h-64 object-cover rounded-xl filter grayscale group-hover:grayscale-0 transition-all duration-500" alt="Speaker"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90 rounded-xl flex flex-col justify-end p-4"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h4 class="font-bold text-white text-sm"&gt;Dr. Arinze Okafor&lt;/h4&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="text-xs text-brand-cyan"&gt;AI Ethics&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>&lt;!-- Speaker 4 --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>&lt;div class="group relative cursor-pointer" onclick="openSpeakerModal('Li Wei', 'VC Partner', 'Future Fund')"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&amp;q=80" class="w-full h-64 object-cover rounded-xl filter grayscale group-hover:grayscale-0 transition-all duration-500" alt="Speaker"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90 rounded-xl flex flex-col justify-end p-4"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h4 class="font-bold text-white text-sm"&gt;Li Wei&lt;/h4&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="text-xs text-brand-cyan"&gt;Venture Capital&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>&lt;!-- Speaker 5 --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>&lt;div class="group relative cursor-pointer" onclick="openSpeakerModal('James Ford', 'Cybersecurity Expert', 'White Hat Hacker')"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&amp;q=80" class="w-full h-64 object-cover rounded-xl filter grayscale group-hover:grayscale-0 transition-all duration-500" alt="Speaker"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90 rounded-xl flex flex-col justify-end p-4"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h4 class="font-bold text-white text-sm"&gt;James Ford&lt;/h4&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="text-xs text-brand-cyan"&gt;Security&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>&lt;!-- Speaker 6 --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>&lt;div class="group relative cursor-pointer" onclick="openSpeakerModal('Priya Patel', 'NLP Researcher', 'OpenAI Alum')"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=400&amp;q=80" class="w-full h-64 object-cover rounded-xl filter grayscale group-hover:grayscale-0 transition-all duration-500" alt="Speaker"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90 rounded-xl flex flex-col justify-end p-4"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h4 class="font-bold text-white text-sm"&gt;Priya Patel&lt;/h4&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="text-xs text-brand-cyan"&gt;NLP&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Photo Gallery (Masonry) --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;section id="gallery" class="py-20 bg-gradient-to-b from-brand-dark to-black"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;h2 class="text-3xl font-bold mb-8"&gt;Event &lt;span class="text-brand-green"&gt;Gallery&lt;/span&gt;&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="columns-1 md:columns-3 gap-4 space-y-4"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="break-inside-avoid relative group rounded-xl overflow-hidden"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;img src="https://images.unsplash.com/photo-1544531586-fde5298cdd40?w=600&amp;q=80" class="w-full rounded-xl transition group-hover:scale-110 duration-700"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="text-white font-bold border border-white px-4 py-2"&gt;NYC 2024&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="break-inside-avoid relative group rounded-xl overflow-hidden"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;img src="https://images.unsplash.com/photo-1515187029135-18ee286d815b?w=600&amp;q=80" class="w-full rounded-xl transition group-hover:scale-110 duration-700"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="break-inside-avoid relative group rounded-xl overflow-hidden"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;img src="https://images.unsplash.com/photo-1591115765373-5207764f72e7?w=600&amp;q=80" class="w-full rounded-xl transition group-hover:scale-110 duration-700"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="break-inside-avoid relative group rounded-xl overflow-hidden"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;img src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=600&amp;q=80" class="w-full rounded-xl transition group-hover:scale-110 duration-700"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>&lt;div class="break-inside-avoid relative group rounded-xl overflow-hidden"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;img src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=600&amp;q=80" class="w-full rounded-xl transition group-hover:scale-110 duration-700"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>&lt;div class="break-inside-avoid relative group rounded-xl overflow-hidden"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&amp;q=80" class="w-full rounded-xl transition group-hover:scale-110 duration-700"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- News &amp; Blog --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;section id="news" class="py-20"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;h2 class="text-3xl font-bold mb-8"&gt;Latest &lt;span class="text-brand-cyan"&gt;Insights&lt;/span&gt;&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="grid grid-cols-1 md:grid-cols-2 gap-8"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;!-- Blog 1 --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="glass-panel p-6 rounded-2xl border-l-4 border-brand-green hover:bg-white/5 transition-colors cursor-pointer group"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="flex items-center gap-3 mb-4"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="bg-brand-green/20 text-brand-green px-2 py-1 rounded text-xs font-bold uppercase"&gt;Tech&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="text-gray-500 text-sm"&gt;Oct 24, 2024&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="text-2xl font-bold mb-3 group-hover:text-brand-green transition-colors"&gt;Quantum AI: The Next Frontier&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-gray-400 mb-4"&gt;How quantum computing will accelerate machine learning models by 1000x in the next decade.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span class="text-brand-green font-bold text-sm"&gt;Read Article &lt;i class="fa-solid fa-arrow-right ml-1"&gt;&lt;/i&gt;&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>&lt;!-- Blog 2 --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>&lt;div class="glass-panel p-6 rounded-2xl border-l-4 border-brand-purple hover:bg-white/5 transition-colors cursor-pointer group"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="flex items-center gap-3 mb-4"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="bg-brand-purple/20 text-brand-purple px-2 py-1 rounded text-xs font-bold uppercase"&gt;Ethics&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="text-gray-500 text-sm"&gt;Oct 20, 2024&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="text-2xl font-bold mb-3 group-hover:text-brand-purple transition-colors"&gt;Regulating the Algorithm&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-gray-400 mb-4"&gt;New frameworks proposed by the EU AI Act and what it means for open source developers.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span class="text-brand-purple font-bold text-sm"&gt;Read Article &lt;i class="fa-solid fa-arrow-right ml-1"&gt;&lt;/i&gt;&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- About &amp; Connect --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;section id="about" class="py-20 border-t border-white/10"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h2 class="text-4xl font-bold mb-6"&gt;About the &lt;span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-cyan to-brand-green"&gt;Host&lt;/span&gt;&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-lg text-gray-300 mb-6 leading-relaxed"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>I bridge the gap between complex algorithms and human understanding. With over a decade in tech, WorldAIForum is my dedication to democratizing AI knowledge.</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="flex flex-wrap gap-4 mb-8"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="bg-white/5 border border-white/10 px-4 py-2 rounded-full flex items-center gap-2"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;i class="fa-solid fa-microphone text-brand-cyan"&gt;&lt;/i&gt; 50+ Keynotes</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                         </span>&lt;div class="bg-white/5 border border-white/10 px-4 py-2 rounded-full flex items-center gap-2"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;i class="fa-solid fa-award text-brand-purple"&gt;&lt;/i&gt; Top Voice '24</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p2"><span class="Apple-converted-space">                    </span></p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="text-xl font-bold mb-4 text-white"&gt;Join the Community&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="flex gap-4"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;a href="#" class="w-12 h-12 bg-[#25D366] rounded-full flex items-center justify-center text-black text-xl hover:scale-110 transition-transform"&gt;&lt;i class="fa-brands fa-whatsapp"&gt;&lt;/i&gt;&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;a href="#" class="w-12 h-12 bg-[#5865F2] rounded-full flex items-center justify-center text-white text-xl hover:scale-110 transition-transform"&gt;&lt;i class="fa-brands fa-discord"&gt;&lt;/i&gt;&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;a href="#" class="w-12 h-12 bg-[#0077b5] rounded-full flex items-center justify-center text-white text-xl hover:scale-110 transition-transform"&gt;&lt;i class="fa-brands fa-linkedin-in"&gt;&lt;/i&gt;&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;a href="#" class="w-12 h-12 bg-black border border-white/20 rounded-full flex items-center justify-center text-white text-xl hover:scale-110 transition-transform"&gt;&lt;i class="fa-brands fa-x-twitter"&gt;&lt;/i&gt;&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;!-- Newsletter Card --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="glass-card p-8 rounded-2xl text-center relative overflow-hidden"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="absolute -top-10 -right-10 w-32 h-32 bg-brand-cyan blur-3xl opacity-20"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;i class="fa-regular fa-envelope-open text-5xl text-gray-300 mb-4"&gt;&lt;/i&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="text-2xl font-bold mb-2"&gt;Weekly Intelligence&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-gray-400 mb-6 text-sm"&gt;Get the curated digest of AI news. No spam, just signal.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;form class="flex flex-col gap-3"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;input type="email" placeholder="you@company.com" class="bg-black/40 border border-white/20 rounded p-3 text-white focus:border-brand-cyan focus:outline-none"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;button class="bg-white text-black font-bold py-3 rounded hover:bg-gray-200 transition-colors"&gt;SUBSCRIBE&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/form&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Footer --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;footer class="bg-black py-10 border-t border-white/10 text-center text-gray-500 text-sm"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;&amp;copy; 2025 WorldAIForum. Designed by the Future.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/footer&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Speaker Modal --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="speaker-modal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/80 backdrop-blur-sm p-4"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="glass-panel w-full max-w-lg rounded-2xl p-8 relative transform transition-all scale-95 opacity-0" id="modal-content"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;button onclick="closeSpeakerModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white"&gt;&lt;i class="fa-solid fa-xmark text-2xl"&gt;&lt;/i&gt;&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="text-center"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="w-24 h-24 bg-gradient-to-br from-brand-cyan to-brand-purple rounded-full mx-auto mb-4 p-1"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="w-full h-full bg-black rounded-full flex items-center justify-center"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;i class="fa-solid fa-user text-3xl text-white"&gt;&lt;/i&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;h3 class="text-2xl font-bold text-white" id="modal-name"&gt;Speaker Name&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="text-brand-cyan" id="modal-role"&gt;Role&lt;/p&gt;</p>
-<p class="p2"><span class="Apple-converted-space">                </span></p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="mt-6 text-left bg-white/5 p-4 rounded-xl"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-gray-300 italic mb-4"&gt;"&lt;span id="modal-quote"&gt;Artificial Intelligence is not about replacing humans, but amplifying our potential to solve the unsolvable.&lt;/span&gt;"&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="border-t border-white/10 pt-4 mt-4"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h4 class="text-sm font-bold text-gray-500 uppercase"&gt;Achievements&lt;/h4&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="text-white mt-1" id="modal-award"&gt;Award&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="mt-6 flex justify-center gap-6"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;button class="bg-brand-cyan text-black px-4 py-2 rounded-lg font-bold hover:bg-white transition-colors"&gt;Follow&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;button class="border border-white/20 px-4 py-2 rounded-lg hover:bg-white/10 transition-colors"&gt;View Talks&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>// Mobile Menu Toggle</p>
-<p class="p1"><span class="Apple-converted-space">        </span>function toggleMobileMenu() {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const menu = document.getElementById('mobile-menu');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>menu.classList.toggle('hidden');</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>// Animated Counters</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const counters = document.querySelectorAll('.counter');</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const observer = new IntersectionObserver((entries) =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>entries.forEach(entry =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>if (entry.isIntersecting) {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>const counter = entry.target;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>const target = +counter.getAttribute('data-target');</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>const increment = target / 50;</p>
-<p class="p2"><span class="Apple-converted-space">                    </span></p>
-<p class="p1"><span class="Apple-converted-space">                    </span>const updateCount = () =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>const count = +counter.innerText;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>if (count &lt; target) {</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>counter.innerText = Math.ceil(count + increment);</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>setTimeout(updateCount, 40);</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>} else {</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>counter.innerText = target;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>if(target &gt; 1000) counter.innerText = (target/1000).toFixed(1) + 'M';</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>};</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>updateCount();</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>observer.unobserve(counter);</p>
-<p class="p1"><span class="Apple-converted-space">                </span>}</p>
-<p class="p1"><span class="Apple-converted-space">            </span>});</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}, { threshold: 0.5 });</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>counters.forEach(counter =&gt; observer.observe(counter));</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>// Conference Registration Logic</p>
-<p class="p1"><span class="Apple-converted-space">        </span>function nextStep(step) {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>// Hide all steps</p>
-<p class="p1"><span class="Apple-converted-space">            </span>document.querySelectorAll('.step-content').forEach(el =&gt; el.classList.add('hidden'));</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>// Show specific step</p>
-<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById(`step-${step}`).classList.remove('hidden');</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>// Update progress bar</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const bar = document.getElementById('progress-bar');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>if(step === 1) bar.style.width = '33%';</p>
-<p class="p1"><span class="Apple-converted-space">            </span>if(step === 2) bar.style.width = '66%';</p>
-<p class="p1"><span class="Apple-converted-space">            </span>if(step === 3) bar.style.width = '100%';</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>function finishRegistration() {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById('step-3').classList.add('hidden');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById('step-success').classList.remove('hidden');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById('progress-bar').classList.add('bg-brand-green');</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>// Speaker Modal Logic</p>
-<p class="p1"><span class="Apple-converted-space">        </span>function openSpeakerModal(name, role, award) {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const modal = document.getElementById('speaker-modal');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const content = document.getElementById('modal-content');</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById('modal-name').innerText = name;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById('modal-role').innerText = role;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById('modal-award').innerText = award;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>modal.classList.remove('hidden');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>modal.classList.add('flex');</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>setTimeout(() =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>content.classList.remove('scale-95', 'opacity-0');</p>
-<p class="p1"><span class="Apple-converted-space">                </span>content.classList.add('scale-100', 'opacity-100');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}, 10);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>function closeSpeakerModal() {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const modal = document.getElementById('speaker-modal');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const content = document.getElementById('modal-content');</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>content.classList.remove('scale-100', 'opacity-100');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>content.classList.add('scale-95', 'opacity-0');</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>setTimeout(() =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>modal.classList.add('hidden');</p>
-<p class="p1"><span class="Apple-converted-space">                </span>modal.classList.remove('flex');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}, 300);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>// Close modal on outside click</p>
-<p class="p1"><span class="Apple-converted-space">        </span>document.getElementById('speaker-modal').addEventListener('click', (e) =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>if (e.target === document.getElementById('speaker-modal')) {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>closeSpeakerModal();</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>});</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>// Countdown Logic</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const deadline = new Date(Date.now() + 14 * 24 * 60 * 60 * 1000); // 14 days from now</p>
-<p class="p1"><span class="Apple-converted-space">        </span>function updateCountdown() {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const now = new Date();</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const diff = deadline - now;</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>const d = Math.floor(diff / (1000 * 60 * 60 * 24));</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const h = Math.floor((diff / (1000 * 60 * 60)) % 24);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const m = Math.floor((diff / 1000 / 60) % 60);</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById('days').innerText = d &lt; 10 ? '0' + d : d;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById('hours').innerText = h &lt; 10 ? '0' + h : h;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById('minutes').innerText = m &lt; 10 ? '0' + m : m;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>setInterval(updateCountdown, 1000);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>updateCountdown();</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>// Navbar Scroll Effect</p>
-<p class="p1"><span class="Apple-converted-space">        </span>window.addEventListener('scroll', () =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const nav = document.getElementById('navbar');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>if (window.scrollY &gt; 50) {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>nav.classList.add('bg-black/80', 'backdrop-blur-xl', 'shadow-lg');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>} else {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>nav.classList.remove('bg-black/80', 'backdrop-blur-xl', 'shadow-lg');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>});</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
-<p class="p1">&lt;/body&gt;</p>
-<p class="p1">&lt;/html&gt;</p>
-</body>
-</html>
+<body class="antialiased selection:bg-brand-cyan selection:text-brand-dark">
+
+    <!-- Background Animation -->
+    <div class="bg-mesh">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-panel border-b-0 border-white/5 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <i class="fa-solid fa-globe text-3xl text-brand-cyan animate-pulse-slow"></i>
+                    <span class="font-bold text-2xl tracking-tighter text-white">World<span class="text-brand-cyan">AI</span>Forum</span>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#about" class="hover:text-brand-cyan transition-colors px-3 py-2 rounded-md text-sm font-medium">About</a>
+                        <a href="#videos" class="hover:text-brand-cyan transition-colors px-3 py-2 rounded-md text-sm font-medium">Videos</a>
+                        <a href="#speakers" class="hover:text-brand-cyan transition-colors px-3 py-2 rounded-md text-sm font-medium">Speakers</a>
+                        <a href="#gallery" class="hover:text-brand-cyan transition-colors px-3 py-2 rounded-md text-sm font-medium">Gallery</a>
+                        <a href="#news" class="hover:text-brand-cyan transition-colors px-3 py-2 rounded-md text-sm font-medium">News</a>
+                        <a href="#conference" class="bg-brand-cyan/20 text-brand-cyan hover:bg-brand-cyan hover:text-black border border-brand-cyan/50 px-4 py-2 rounded-full transition-all duration-300 text-sm font-bold shadow-[0_0_15px_rgba(6,182,212,0.3)]">
+                            Join Conference
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button onclick="toggleMobileMenu()" class="text-gray-300 hover:text-white p-2">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden glass-panel border-t border-white/10">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#about" class="text-gray-300 hover:text-brand-cyan block px-3 py-2 rounded-md text-base font-medium">About</a>
+                <a href="#videos" class="text-gray-300 hover:text-brand-cyan block px-3 py-2 rounded-md text-base font-medium">Videos</a>
+                <a href="#speakers" class="text-gray-300 hover:text-brand-cyan block px-3 py-2 rounded-md text-base font-medium">Speakers</a>
+                <a href="#conference" class="text-brand-green font-bold block px-3 py-2 rounded-md text-base">Register Now</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            
+            <div class="inline-block mb-6 px-4 py-1 rounded-full border border-brand-green/30 bg-brand-green/10 backdrop-blur-md">
+                <span class="text-brand-green text-sm font-mono uppercase tracking-widest"><span class="animate-pulse">●</span> Live: Global AI Summit 2025</span>
+            </div>
+
+            <h1 class="text-5xl md:text-8xl font-black tracking-tight mb-6 leading-tight">
+                Shaping the <br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-cyan via-white to-brand-purple animate-shimmer bg-[length:200%_auto]">Intelligence</span> Era
+            </h1>
+
+            <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-400 font-light">
+                Join the world's most elite gathering of innovators, ethical hackers, and visionaries. Exploring the boundaries of Generative AI, Robotics, and Ethics.
+            </p>
+
+            <div class="mt-10 flex flex-col items-center gap-4">
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <button onclick="document.getElementById('conference').scrollIntoView()" class="px-8 py-4 bg-brand-cyan hover:bg-brand-cyan/80 text-black font-bold rounded-full transition-all transform hover:scale-105 shadow-[0_0_30px_rgba(6,182,212,0.4)]">
+                        Secure Your Spot
+                    </button>
+                    <button onclick="document.getElementById('videos').scrollIntoView()" class="px-8 py-4 bg-white/5 hover:bg-white/10 text-white border border-white/20 font-bold rounded-full transition-all backdrop-blur-md flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-play"></i> Watch Keynotes
+                    </button>
+                </div>
+                <button onclick="document.getElementById('about').scrollIntoView()" class="px-8 py-3 bg-brand-purple/20 hover:bg-brand-purple hover:text-white text-brand-purple border border-brand-purple/50 font-bold rounded-full transition-all backdrop-blur-md flex items-center justify-center gap-2 shadow-[0_0_15px_rgba(168,85,247,0.2)]">
+                    <i class="fa-solid fa-users"></i> Join Community
+                </button>
+            </div>
+
+            <!-- Floating Stats -->
+            <div class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-white/10 pt-10">
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-white counter" data-target="125">0</div>
+                    <div class="text-sm text-gray-400 uppercase tracking-wider">Countries</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-white counter" data-target="500">0</div>
+                    <div class="text-sm text-gray-400 uppercase tracking-wider">Speakers</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-white counter" data-target="50">0</div>
+                    <div class="text-sm text-gray-400 uppercase tracking-wider">Startups</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-white counter" data-target="15">0</div>
+                    <div class="text-sm text-gray-400 uppercase tracking-wider">Workshops</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Decorative Floating Elements -->
+        <div class="absolute top-1/4 left-10 w-20 h-20 glass-card rounded-2xl animate-float flex items-center justify-center opacity-50 md:opacity-100">
+            <i class="fa-solid fa-microchip text-4xl text-brand-purple"></i>
+        </div>
+        <div class="absolute bottom-1/4 right-10 w-24 h-24 glass-card rounded-full animate-float flex items-center justify-center opacity-50 md:opacity-100" style="animation-delay: 2s;">
+            <i class="fa-solid fa-globe text-4xl text-brand-cyan"></i>
+        </div>
+    </section>
+
+    <!-- YouTube & Video Section -->
+    <section id="videos" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-end mb-12">
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-2">From the <span class="text-red-500">Channel</span></h2>
+                    <p class="text-gray-400">Deep dives, tutorials, and conference replays.</p>
+                </div>
+                <div class="hidden md:flex gap-6 items-center glass-panel px-6 py-3 rounded-full">
+                    <div class="text-center">
+                        <span class="block font-bold text-white">125K</span>
+                        <span class="text-xs text-gray-400">Subscribers</span>
+                    </div>
+                    <div class="w-px h-8 bg-white/20"></div>
+                    <div class="text-center">
+                        <span class="block font-bold text-white">2.5M</span>
+                        <span class="text-xs text-gray-400">Views</span>
+                    </div>
+                    <button class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded text-sm font-bold transition-colors">
+                        SUBSCRIBE
+                    </button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Video Card 1 -->
+                <div class="glass-card rounded-xl overflow-hidden group cursor-pointer">
+                    <div class="relative h-48 bg-gray-800">
+                        <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=800&q=80" class="w-full h-full object-cover transition transform group-hover:scale-110" alt="AI Video">
+                        <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                            <i class="fa-solid fa-play-circle text-6xl text-brand-cyan drop-shadow-lg"></i>
+                        </div>
+                        <span class="absolute bottom-2 right-2 bg-black/80 text-xs px-2 py-1 rounded">12:45</span>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="text-lg font-bold mb-2 group-hover:text-brand-cyan transition-colors">The Ethics of AGI: A Debate</h3>
+                        <div class="flex justify-between text-sm text-gray-400">
+                            <span><i class="fa-regular fa-eye mr-1"></i> 45K Views</span>
+                            <span>2 days ago</span>
+                        </div>
+                    </div>
+                </div>
+
+                 <!-- Video Card 2 -->
+                 <div class="glass-card rounded-xl overflow-hidden group cursor-pointer">
+                    <div class="relative h-48 bg-gray-800">
+                        <img src="https://images.unsplash.com/photo-1555255707-c07966088b7b?w=800&q=80" class="w-full h-full object-cover transition transform group-hover:scale-110" alt="Coding Video">
+                        <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                            <i class="fa-solid fa-play-circle text-6xl text-brand-cyan drop-shadow-lg"></i>
+                        </div>
+                        <span class="absolute bottom-2 right-2 bg-black/80 text-xs px-2 py-1 rounded">28:10</span>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="text-lg font-bold mb-2 group-hover:text-brand-cyan transition-colors">Building Neural Networks from Scratch</h3>
+                        <div class="flex justify-between text-sm text-gray-400">
+                            <span><i class="fa-regular fa-eye mr-1"></i> 112K Views</span>
+                            <span>1 week ago</span>
+                        </div>
+                    </div>
+                </div>
+
+                 <!-- Video Card 3 -->
+                 <div class="glass-card rounded-xl overflow-hidden group cursor-pointer">
+                    <div class="relative h-48 bg-gray-800">
+                        <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&q=80" class="w-full h-full object-cover transition transform group-hover:scale-110" alt="Robot">
+                        <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                            <i class="fa-solid fa-play-circle text-6xl text-brand-cyan drop-shadow-lg"></i>
+                        </div>
+                        <span class="absolute bottom-2 right-2 bg-black/80 text-xs px-2 py-1 rounded">08:30</span>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="text-lg font-bold mb-2 group-hover:text-brand-cyan transition-colors">Robotics in 2025: What to Expect</h3>
+                        <div class="flex justify-between text-sm text-gray-400">
+                            <span><i class="fa-regular fa-eye mr-1"></i> 89K Views</span>
+                            <span>2 weeks ago</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Conference Sign-Up Section -->
+    <section id="conference" class="py-20 bg-black/30 relative">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <span class="text-brand-green font-mono tracking-widest text-sm uppercase">Next Event</span>
+                <h2 class="text-4xl font-bold mt-2 mb-4">Silicon Valley AI Summit</h2>
+                
+                <!-- Countdown -->
+                <div class="flex justify-center gap-4 text-center my-8">
+                    <div class="glass-panel p-4 rounded-lg w-24">
+                        <span class="block text-3xl font-bold text-brand-cyan" id="days">00</span>
+                        <span class="text-xs uppercase text-gray-400">Days</span>
+                    </div>
+                    <div class="glass-panel p-4 rounded-lg w-24">
+                        <span class="block text-3xl font-bold text-brand-cyan" id="hours">00</span>
+                        <span class="text-xs uppercase text-gray-400">Hours</span>
+                    </div>
+                    <div class="glass-panel p-4 rounded-lg w-24">
+                        <span class="block text-3xl font-bold text-brand-cyan" id="minutes">00</span>
+                        <span class="text-xs uppercase text-gray-400">Mins</span>
+                    </div>
+                </div>
+                
+                <!-- Availability Bar -->
+                <div class="max-w-md mx-auto mb-8">
+                    <div class="flex justify-between text-xs mb-1 text-gray-400">
+                        <span>Availability</span>
+                        <span class="text-red-400">Only 14 spots left</span>
+                    </div>
+                    <div class="w-full bg-gray-800 rounded-full h-2">
+                        <div class="bg-gradient-to-r from-brand-cyan to-brand-green h-2 rounded-full" style="width: 88%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- The Registration Application -->
+            <div class="glass-panel rounded-2xl p-1 border border-brand-cyan/20 shadow-2xl overflow-hidden relative" id="reg-app">
+                
+                <!-- Progress Bar -->
+                <div class="h-1 w-full bg-gray-800 absolute top-0 left-0 z-20">
+                    <div id="progress-bar" class="h-full bg-brand-cyan transition-all duration-500" style="width: 33%"></div>
+                </div>
+
+                <div class="p-8">
+                    <!-- Step 1: Info -->
+                    <div id="step-1" class="step-content">
+                        <h3 class="text-2xl font-bold mb-6 flex items-center gap-2"><span class="bg-brand-cyan text-black w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold">1</span> Your Details</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <input type="text" placeholder="Full Name" class="w-full bg-white/5 border border-white/10 rounded-lg p-3 text-white focus:border-brand-cyan focus:outline-none focus:ring-1 focus:ring-brand-cyan transition-colors">
+                            <input type="email" placeholder="Email Address" class="w-full bg-white/5 border border-white/10 rounded-lg p-3 text-white focus:border-brand-cyan focus:outline-none transition-colors">
+                            <input type="tel" placeholder="Phone Number" class="w-full bg-white/5 border border-white/10 rounded-lg p-3 text-white focus:border-brand-cyan focus:outline-none transition-colors">
+                            <input type="text" placeholder="Company / Organization" class="w-full bg-white/5 border border-white/10 rounded-lg p-3 text-white focus:border-brand-cyan focus:outline-none transition-colors">
+                        </div>
+                        <div class="mt-8 text-right">
+                            <button onclick="nextStep(2)" class="bg-white text-black font-bold py-3 px-8 rounded-lg hover:bg-gray-200 transition-colors">Next: Select Ticket <i class="fa-solid fa-arrow-right ml-2"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Ticket -->
+                    <div id="step-2" class="step-content hidden">
+                        <h3 class="text-2xl font-bold mb-6 flex items-center gap-2"><span class="bg-brand-cyan text-black w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold">2</span> Choose Access</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <!-- Standard -->
+                            <label class="cursor-pointer">
+                                <input type="radio" name="ticket" class="peer sr-only">
+                                <div class="p-4 rounded-xl border border-white/10 bg-white/5 peer-checked:border-brand-cyan peer-checked:bg-brand-cyan/10 transition-all hover:bg-white/10 h-full">
+                                    <h4 class="font-bold text-lg">Virtual</h4>
+                                    <p class="text-3xl font-bold my-2 text-white">$49</p>
+                                    <ul class="text-sm text-gray-400 space-y-2">
+                                        <li><i class="fa-solid fa-check text-brand-cyan"></i> Live Stream</li>
+                                        <li><i class="fa-solid fa-check text-brand-cyan"></i> Discord Access</li>
+                                    </ul>
+                                </div>
+                            </label>
+                            <!-- Pro -->
+                            <label class="cursor-pointer">
+                                <input type="radio" name="ticket" class="peer sr-only" checked>
